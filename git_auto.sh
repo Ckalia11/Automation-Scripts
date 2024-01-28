@@ -20,7 +20,7 @@ if [[ -n $(git status -s) ]]; then
             echo "No remote repository specified."
             exit 1
         else
-            git remote add origin $2
+            git remote add origin "$2"
         fi
     fi
 
