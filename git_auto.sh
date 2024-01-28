@@ -38,4 +38,4 @@ echo "commit"
 # Push to the remote repository
 # git push
 
-fi
+# fi
