@@ -40,4 +40,6 @@ if [[ -n $(git status -s) ]]; then
 
     # Push to the remote repository
     git push origin $branch
+else    
+    echo "No changes to commit."
 fi
