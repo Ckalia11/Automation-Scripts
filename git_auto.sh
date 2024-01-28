@@ -14,6 +14,16 @@ fi
 # Check if there are any changes to commit
 if [[ -n $(git status -s) ]]; then
 
+    # Add remote repository if not already added
+    if [[ -z $(git remote) ]]; then
+        if [[ -z $2 ]]; then
+            echo "No remote repository specified."
+            exit 1
+        else
+            git remote add origin $2
+        fi
+    fi
+
     # Get the current branch name
     branch=$(git rev-parse --abbrev-ref HEAD)
 
@@ -31,12 +41,7 @@ if [[ -n $(git status -s) ]]; then
     fi
 
     # Commit with a default message or you can customize it
-    git commit -m "$commit_message" 
-
-    # Add remote repository if not already added
-    if [ "$2" ]; then
-        git remote add origin $2        
-    fi   
+    git commit -m "$commit_message"  
 
     # Push to the remote repository
     git push origin $branch
