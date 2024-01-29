@@ -14,6 +14,9 @@ fi
 # Check if there are any changes to commit
 if [[ -n $(git status -s) ]]; then
 
+    # Git pull to get the latest changes
+    git pull
+    
     # Add remote repository if not already added
     if [[ -z $(git remote) ]]; then
         if [[ -z $2 ]]; then
