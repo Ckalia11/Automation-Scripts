@@ -13,9 +13,6 @@ fi
 
 # Check if there are any changes to commit
 if [[ -n $(git status -s) ]]; then
-
-    # Git pull to get the latest changes
-    git pull
     
     # Add remote repository if not already added
     if [[ -z $(git remote) ]]; then
@@ -26,6 +23,9 @@ if [[ -n $(git status -s) ]]; then
             git remote add origin "$2"
         fi
     fi
+
+    # Git pull to get the latest changes
+    git pull
 
     # Get the current branch name
     branch=$(git rev-parse --abbrev-ref HEAD)
