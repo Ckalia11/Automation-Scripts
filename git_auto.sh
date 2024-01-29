@@ -24,14 +24,14 @@ if [[ -n $(git status -s) ]]; then
         fi
     fi
 
-    # Git pull to get the latest changes
-    git pull
-
     # Get the current branch name
     branch=$(git rev-parse --abbrev-ref HEAD)
 
     # Create upstream branch if doesn't exist
     git push -u origin $branch
+
+    # Git pull to get the latest changes
+    git pull origin $branch
 
     # Add all changes
     git add .
