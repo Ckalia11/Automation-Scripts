@@ -9,10 +9,10 @@ OPTSTRING=":co"
 while getopts ${OPTSTRING} opt; do
   case ${opt} in
     c)
-      c="${OPTARG}"
+      c_flag="${OPTARG}"
       ;;
     o)
-      o="${OPTARG}"
+      o_flag="${OPTARG}"
       ;;
     :)
       echo "Option -${OPTARG} requires an argument."
@@ -40,7 +40,7 @@ if [[ -n $(git status -s) ]]; then
     
     # Add remote repository if not already added
     if [[ -z $(git remote) ]]; then
-        if [[ -z o_flag ]]; then
+        if [[ -z $o_flag ]] then
             echo "No remote repository specified."
             exit 1
         else
@@ -70,7 +70,7 @@ if [[ -n $(git status -s) ]]; then
     commit_message="WIP"
 
     if [[ -n $c_flag ]]; then
-        commit_message="$c"
+        commit_message="$c_flag"
     fi
 
     # Commit with a default message or you can customize it
