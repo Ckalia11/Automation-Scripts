@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# process flags for commit message and remote repo url
 c_flag=''
 o_flag=''
 
