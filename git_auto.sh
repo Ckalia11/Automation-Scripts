@@ -1,7 +1,7 @@
 #!/bin/bash
 
-c_flag = ''
-o_flag = ''
+c_flag=''
+o_flag=''
 
 OPTSTRING=":co"
 
