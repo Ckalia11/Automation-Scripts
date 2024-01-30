@@ -24,6 +24,12 @@ if [[ -n $(git status -s) ]]; then
         fi
     fi
 
+    # Check if the repository is empty
+    if [[ -z $(git log -1 2>/dev/null) ]]; then
+        # Initialize the repository with a commit
+        git commit --allow-empty -m "Initial commit"
+    fi
+
     # Get the current branch name
     branch=$(git rev-parse --abbrev-ref HEAD)
 
