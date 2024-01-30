@@ -1,5 +1,28 @@
 #!/bin/bash
 
+c_flag = ''
+o_flag = ''
+
+OPTSTRING=":co"
+
+while getopts ${OPTSTRING} opt; do
+  case ${opt} in
+    c)
+      c="${OPTARG}"
+      ;;
+    o)
+      o="${OPTARG}"
+      ;;
+    :)
+      echo "Option -${OPTARG} requires an argument."
+      exit 1
+      ;;
+    ?)
+      echo "Invalid option: -${OPTARG}."
+      exit 1
+      ;;
+  esac
+done
 
 # Check if current directory or any parent directories are Git repositories
 while [[ ! -d .git && $PWD != '/' ]]; do
@@ -16,11 +39,11 @@ if [[ -n $(git status -s) ]]; then
     
     # Add remote repository if not already added
     if [[ -z $(git remote) ]]; then
-        if [[ -z $2 ]]; then
+        if [[ -z o_flag ]]; then
             echo "No remote repository specified."
             exit 1
         else
-            git remote add origin "$2"
+            git remote add origin "$o"
         fi
     fi
 
@@ -45,8 +68,8 @@ if [[ -n $(git status -s) ]]; then
     # Default commit message
     commit_message="WIP"
 
-    if [ "$1" ]; then
-        commit_message=$1        
+    if [[ -n $c_flag ]]; then
+        commit_message="$c"
     fi
 
     # Commit with a default message or you can customize it
